@@ -5,5 +5,5 @@ public void PrintBoard(string[] gameBoardInfo)
     //Print the board in this method
     //Don't return anything
 
-public string[] Winner(string[] gameBoardInfo)
+public string[] Winner(string gameBoardInfo)
     //[true, X's]
