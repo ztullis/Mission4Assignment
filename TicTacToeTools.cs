@@ -16,7 +16,7 @@ namespace Mission4_Main_Program
         //Don't return anything
         //Input will look like this [ , ,X, , ,O, , ,O]
 
-        public string[] Winner(string gameBoardInfo)
+        public string Winner(string[] gameBoardInfo)
         //[true, X's]
         //Input will look like this [ , ,X, , ,O, , ,O] 
         //Return string "X" "O" "T" "-" 
