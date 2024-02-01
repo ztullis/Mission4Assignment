@@ -3,7 +3,7 @@ using System.ComponentModel.Design;
 
 TicTacToeTools tttt = new TicTacToeTools();
 
-string[] gameBoardInfo = new string[9];
+string [] gameBoardInfo = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 bool player1Turn = true;
 bool gameOver = false;
 int PlayerNumber = 0;
@@ -13,9 +13,11 @@ List<int> numbersPicked = new List<int>();
 bool isNotValid = true;
 string gameUpdate = "";
 
+gameBoardInfo = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
 Console.WriteLine("Welcome to Tic Tac Toe!");
 
-Console.WriteLine("Directions: type a number (1 - 9) to represent the spot you want to place your X or O.");
+Console.WriteLine("Directions: type a number (1 - 9) to represent the spot you want to place your X or O. \nTry to get 3 in a row before your opponent!");
 
 //print board
 tttt.PrintBoard(gameBoardInfo);
@@ -24,6 +26,8 @@ Console.WriteLine("Player 1 (X): Pick a number!");
 
 do
 {
+    isNotValid = true;
+
     Console.WriteLine("");
 
     if (player1Turn == true)
@@ -41,13 +45,11 @@ do
 
     
     //This loop runs 
-    while (isNotValid = true)
+    while (isNotValid == true)
     {
         positionPicked = Convert.ToInt32(Console.ReadLine());
 
-        gameBoardInfo[positionPicked - 1] = Character;
-
-        if (positionPicked >= 1 && positionPicked <= 9)
+        if (positionPicked < 1 || positionPicked > 9)
         {
             Console.WriteLine("You must pick a number between 1 and 9. Try again.");
         }
