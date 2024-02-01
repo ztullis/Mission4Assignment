@@ -12,22 +12,21 @@ namespace Mission4_Main_Program
     {
         public void PrintBoard(string[] gameBoardInfo)
         {
+            // variable that is assigning gameBoardInfo to an array called input. 
             string[] aInput = gameBoardInfo;
             // This is the board output with numbers assigned!
             Console.WriteLine($"[ {aInput[0]} ] | [ {aInput[1]} ] | [ {aInput[2]} ] ");
             Console.WriteLine($"[ {aInput[3]} ] | [ {aInput[4]} ] | [ {aInput[5]} ] ");
             Console.WriteLine($"[ {aInput[6]} ] | [ {aInput[7]} ] | [ {aInput[8]} ] ");
         }
-        //Print the board in this method
-        //Don't return anything
 
         public string Winner(string[] gameBoardInfo)
 
         {
+            // defining a variable.
             string winner = "";
 
-            //for (int iCount = 0; iCount < gameBoardInfo.Length; iCount++)
-            //{
+            // going through each of the situations to make the game a win, a loss, or a draw.
                 if (gameBoardInfo[0] == "X" && gameBoardInfo[1] == "X" && gameBoardInfo[2] == "X")
                 {
                     winner = "X";
@@ -93,6 +92,7 @@ namespace Mission4_Main_Program
                     winner = "O";
                 }
                 else if (
+                    //checks to see if all the spaces on the board are either x or o. IF so, a tie is declared
                     ((gameBoardInfo[0] == "X") || (gameBoardInfo[0] == "O")) &&
                     ((gameBoardInfo[1] == "X") || (gameBoardInfo[1] == "O")) &&
                     ((gameBoardInfo[2] == "X") || (gameBoardInfo[2] == "O")) &&
@@ -104,6 +104,7 @@ namespace Mission4_Main_Program
                     ((gameBoardInfo[8] == "X") || (gameBoardInfo[8] == "O"))
                 )
                 {
+                    // assigning winner
                     winner = "T";
                 }
 
@@ -112,13 +113,11 @@ namespace Mission4_Main_Program
                     winner = "-";
                 }
 
+                // you must return the variable
                 return winner;
             }
-        //}
     }
 }
-        //[true, X's]
-        //Input will look like this [ , ,X, , ,O, , ,O] 
-        //Return string "X" "O" "T" "-" 
+
 
 
