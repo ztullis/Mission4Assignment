@@ -8,7 +8,7 @@ bool player1Turn = true;
 bool gameOver = false;
 int PlayerNumber = 0;
 string Character = "";
-int positionPicked = 0;
+string positionPickedString = "";
 List<int> numbersPicked = new List<int>();
 bool isNotValid = true;
 string gameUpdate = "";
@@ -43,25 +43,51 @@ do
 
     Console.WriteLine($"Player {PlayerNumber}, where would you like to place your {Character}?");
 
-    
-    //This loop runs 
-    while (isNotValid == true)
+    while (isNotValid)
     {
-        positionPicked = Convert.ToInt32(Console.ReadLine());
+        positionPickedString = Console.ReadLine();
 
-        if (positionPicked < 1 || positionPicked > 9)
+        if (positionPickedString.Length != 1)
         {
-            Console.WriteLine("You must pick a number between 1 and 9. Try again.");
-        }
-        else if (numbersPicked.Contains(positionPicked))
-        {
-            Console.WriteLine("This position is already selected. Try again.");
+            Console.WriteLine("Your input can only be 1 character long. Try again.");
         }
         else
         {
-            numbersPicked.Add(positionPicked);
-            gameBoardInfo[positionPicked - 1] = Character;
-            isNotValid = false;
+            char positionPicked;
+
+            if (char.TryParse(positionPickedString, out positionPicked))
+            {
+                if (char.IsDigit(positionPicked))
+                {
+                    int parsedPosition = int.Parse(positionPicked.ToString());
+
+                    if (parsedPosition >= 1 && parsedPosition <= 9)
+                    {
+                        if (!numbersPicked.Contains(parsedPosition))
+                        {
+                            numbersPicked.Add(parsedPosition);
+                            gameBoardInfo[parsedPosition - 1] = Character;
+                            isNotValid = false;
+                        }
+                        else
+                        {
+                            Console.WriteLine("This position is already selected. Try again.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("You must pick a number between 1 and 9. Try again.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Enter a valid number from 1 to 9.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a valid character.");
+            }
         }
     }
 
