@@ -3,7 +3,6 @@ using System.ComponentModel.Design;
 
 TicTacToeTools tttt = new TicTacToeTools();
 
-
 string[] gameBoardInfo = new string[9];
 bool player1Turn = true;
 bool gameOver = false;
@@ -11,11 +10,12 @@ int PlayerNumber = 0;
 string Character = "";
 int positionPicked = 0;
 List<int> numbersPicked = new List<int>();
+bool isNotValid = true;
+string gameUpdate = "";
 
 Console.WriteLine("Welcome to Tic Tac Toe!");
 
 Console.WriteLine("Directions: type a number (1 - 9) to represent the spot you want to place your X or O.");
-
 
 //print board
 tttt.PrintBoard(gameBoardInfo);
@@ -41,9 +41,9 @@ do
 
     
     //This loop runs 
-    while (true)
+    while (isNotValid = true)
     {
-        positionPicked = Console.ReadLine();
+        positionPicked = Convert.ToInt32(Console.ReadLine());
 
         gameBoardInfo[positionPicked - 1] = Character;
 
@@ -59,12 +59,34 @@ do
         {
             numbersPicked.Add(positionPicked);
             gameBoardInfo[positionPicked - 1] = Character;
+            isNotValid = false;
         }
     }
 
     tttt.PrintBoard(gameBoardInfo);
 
-    player1Turn = !player1Turn;
+    gameUpdate = tttt.Winner(gameBoardInfo);
+
+    if (gameUpdate == "X")
+    {
+        Console.WriteLine("Congratulations Player 1 (X), you won!");
+        gameOver = true;
+    }
+    else if (gameUpdate == "O")
+    {
+        Console.WriteLine("Congratulations Player 2 (O), you won!");
+        gameOver = true;
+    }
+    else if (gameUpdate == "T")
+    {
+        Console.WriteLine("The game was tie!");
+        gameOver = true;
+    }
+    else
+    {
+        player1Turn = !player1Turn;
+    }
+    
 } while (!gameOver);
 
 
